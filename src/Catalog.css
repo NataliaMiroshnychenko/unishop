@@ -1,0 +1,8 @@
+.Catalog {
+     display:flex;
+     flex-wrap: wrap;
+ }
+.Catalog__position {
+    border: 1px solid red;
+    margin: 10px;
+}

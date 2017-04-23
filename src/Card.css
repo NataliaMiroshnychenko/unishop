@@ -1,0 +1,19 @@
+.Card {
+    display:table;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #fff;
+}
+.Card__position {
+    display:table-row;
+}
+.Card__cell {
+    display:table-cell;
+    padding: 10px;
+}
+
+.Card__cell-content {
+    display: flex;
+}

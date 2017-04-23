@@ -1,0 +1,14 @@
+.Categories {
+    display:flex;
+    flex-direction: column;
+    flex-basis: 50%;
+}
+.Categories__position {
+    background-color: #eee;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.Categories__position--active {
+    background-color: #f00;
+}
