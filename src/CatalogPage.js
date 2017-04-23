@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Categories from './Categories';
+import Categories from './Layout/Categories';
 import Catalog from './Catalog';
 import './CatalogPage.css';
 import CatalogItem from './CatalogItem';
@@ -39,7 +39,6 @@ class CatalogPage extends Component {
     render() {
         return (
             <div className="CatalogPage">
-                <Categories {...this.props} />
                 <Route exact  path="/catalog/:id"
                        component={({match}) => <Catalog match={match} items={items} currentCategory={Number(match.params.id)} onAdd={this.props.addToCard} />}
                 />
