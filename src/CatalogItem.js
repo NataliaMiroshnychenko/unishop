@@ -8,6 +8,7 @@ class CatalogItem extends Component {
             <div className="Catalog">
                 {
                     <div>
+                        <img src={item.image} />
                         <div><h1>{item.name}</h1></div>
                         <div>{item.price}</div>
                         <div onClick={() => this.props.onAdd(item)}>Add to card</div>

@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import {
     BrowserRouter as Router,
     Route,
-    NavLink
-} from 'react-router-dom'
+} from 'react-router-dom';
+import Header from './Layout/Header';
 
-import logo from './logo.svg';
 import './App.css';
 
 import Card from './Card';
@@ -58,38 +57,23 @@ class App extends Component {
     const { currentCategory, selectedItems } = this.state;
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-
           <Card
               onRemove={this.removeFromCard.bind(this)}
               onIncreaseCount={id => this.changeCount(id, 1)}
               onDecreaseCount={id => this.changeCount(id, -1)}
               items={selectedItems}
           />
-          <div className="App__content">
-              <Router>
-                  <div className="App__router">
-                      <ul className="App__menu">
-                          <li><NavLink exact activeStyle={{ color: 'red' }} to="/">Home</NavLink></li>
-                          <li><NavLink activeStyle={{ color: 'red' }} to="/catalog">Catalog</NavLink></li>
-                          <li><NavLink activeStyle={{ color: 'red' }} to="/about">About</NavLink></li>
-                      </ul>
-
-                      <hr/>
-
-                      <Route exact path="/" component={HomePage}/>
-                      <Route path="/about" component={ () => <AboutPage text={'about us'} /> }/>
-                      <Route
-                          path="/catalog"
-                          component={ props => <CatalogPage {...props} addToCard={this.addToCard.bind(this)} /> }
-                      />
-                  </div>
-              </Router>
-
-          </div>
+          <Router>
+              <div>
+                  <Header />
+                  <Route exact path="/" component={HomePage}/>
+                  <Route path="/about" component={ () => <AboutPage text={'about us'} /> }/>
+                  <Route
+                      path="/catalog"
+                      component={ props => <CatalogPage {...props} addToCard={this.addToCard.bind(this)} /> }
+                  />
+              </div>
+          </Router>
       </div>
     );
   }

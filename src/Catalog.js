@@ -3,22 +3,28 @@ import {
     NavLink
 } from 'react-router-dom';
 import './Catalog.css';
+import BuyButton from './Catalog/styled/BuyButton';
+import CatalogWrapper from './Catalog/styled/CatalogWrapper';
+import CatalogItemWrapper from './Catalog/styled/CatalogItemWrapper';
+import PositionLink from './Catalog/styled/PositionLink';
 
 class Catalog extends Component {
     render() {
         const { items, match } = this.props;
         return (
-            <div className="Catalog">
+            <CatalogWrapper>
                 {
                     items.filter(item => item.categoryId === this.props.currentCategory).map(item =>
-                        <div className="Catalog__position">
-                            <NavLink to={`${match.url}/${item.positionId}`}>{item.name}</NavLink>
+                        <CatalogItemWrapper>
+                            <PositionLink>
+                                <NavLink to={`${match.url}/${item.positionId}`}><img style={{height: '225px'}} src={item.image} />{item.name}</NavLink>
+                            </PositionLink>
                             <div>{item.price}</div>
-                            <div onClick={() => this.props.onAdd(item)}>Add to card</div>
-                        </div>
+                            <BuyButton onClick={() => this.props.onAdd(item)}>Купить</BuyButton>
+                        </CatalogItemWrapper>
                     )
                 }
-            </div>
+            </CatalogWrapper>
         );
     }
 }
