@@ -11,6 +11,11 @@ import Card from './Card';
 import HomePage from './HomePage';
 import AboutPage from './AboutPage';
 import CatalogPage from './CatalogPage';
+import Modal from './Modal/Modal';
+
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as cartActions from './actions/cartActions';
 
 class App extends Component {
     state={
@@ -57,14 +62,17 @@ class App extends Component {
     const { currentCategory, selectedItems } = this.state;
     return (
       <div className="App">
-          <Card
-              onRemove={this.removeFromCard.bind(this)}
-              onIncreaseCount={id => this.changeCount(id, 1)}
-              onDecreaseCount={id => this.changeCount(id, -1)}
-              items={selectedItems}
-          />
           <Router>
               <div>
+                  <div onClick={() => this.props.actions.openCart()}>cart</div>
+                  <Modal>
+                      <Card
+                          onRemove={this.removeFromCard.bind(this)}
+                          onIncreaseCount={id => this.changeCount(id, 1)}
+                          onDecreaseCount={id => this.changeCount(id, -1)}
+                          items={selectedItems}
+                      />
+                  </Modal>
                   <Header />
                   <Route exact path="/" component={HomePage}/>
                   <Route path="/about" component={ () => <AboutPage text={'about us'} /> }/>
@@ -79,4 +87,10 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(cartActions, dispatch)
+    }
+}
+
+export default connect(null, mapDispatchToProps)(App);

@@ -8,6 +8,10 @@ import CatalogWrapper from './Catalog/styled/CatalogWrapper';
 import CatalogItemWrapper from './Catalog/styled/CatalogItemWrapper';
 import PositionLink from './Catalog/styled/PositionLink';
 
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as peopleActions from './actions/peopleActions';
+
 class Catalog extends Component {
     render() {
         const { items, match } = this.props;
@@ -28,4 +32,11 @@ class Catalog extends Component {
         );
     }
 }
-export default Catalog;
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(peopleActions, dispatch)
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Catalog);
